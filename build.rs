@@ -210,6 +210,10 @@ mod build_tesseract {
             "cargo:rustc-link-search=native={}",
             tesseract_install_dir.join("lib").display()
         );
+        println!(
+            "cargo:rustc-link-search=native={}",
+            tesseract_install_dir.join("lib64").display()
+        );
         println!("cargo:rustc-link-lib=static=leptonica");
         println!("cargo:rustc-link-lib=static=tesseract");
 
