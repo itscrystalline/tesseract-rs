@@ -126,7 +126,7 @@ mod build_tesseract {
                     let leptonica_lib_dir = leptonica_install_dir.clone().join("lib");
                     let mut out_lib = glob::glob(
                         leptonica_lib_dir
-                            .join("/leptonica*.lib")
+                            .join("leptonica*.lib")
                             .to_str()
                             .expect("shoud be valid unicode"),
                     )
