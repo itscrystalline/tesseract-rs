@@ -135,7 +135,7 @@ mod build_tesseract {
                         .next()
                         .expect("should not error")
                         .expect("should find lib");
-                    std::fs::rename(out_lib, leptonica_lib_dir.join("leptonica.lib"))
+                    std::fs::copy(out_lib, leptonica_lib_dir.join("leptonica.lib"))
                         .expect("should find library");
                 }
             },
@@ -225,7 +225,7 @@ mod build_tesseract {
                         .next()
                         .expect("should not error")
                         .expect("should find lib");
-                    std::fs::rename(out_lib, tesseract_lib_dir.join("tesseract.lib"))
+                    std::fs::copy(out_lib, tesseract_lib_dir.join("tesseract.lib"))
                         .expect("should find library");
                 }
             },
