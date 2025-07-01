@@ -121,6 +121,23 @@ mod build_tesseract {
                 }
 
                 leptonica_config.build();
+
+                if cfg!(target_os = "windows") {
+                    let leptonica_lib_dir = leptonica_install_dir.clone().join("lib");
+                    let mut out_lib = glob::glob(
+                        leptonica_lib_dir
+                            .join("/leptonica*.lib")
+                            .to_str()
+                            .expect("shoud be valid unicode"),
+                    )
+                    .expect("should have a built library");
+                    let out_lib = out_lib
+                        .next()
+                        .expect("should not error")
+                        .expect("should find lib");
+                    std::fs::rename(out_lib, leptonica_lib_dir.join("leptonica.lib"))
+                        .expect("should find library");
+                }
             },
         );
 
@@ -194,6 +211,23 @@ mod build_tesseract {
                 }
 
                 tesseract_config.build();
+
+                if cfg!(target_os = "windows") {
+                    let tesseract_lib_dir = tesseract_install_dir.clone().join("lib");
+                    let mut out_lib = glob::glob(
+                        tesseract_lib_dir
+                            .join("tesseract*.lib")
+                            .to_str()
+                            .expect("shoud be valid unicode"),
+                    )
+                    .expect("should have a built library");
+                    let out_lib = out_lib
+                        .next()
+                        .expect("should not error")
+                        .expect("should find lib");
+                    std::fs::rename(out_lib, tesseract_lib_dir.join("tesseract.lib"))
+                        .expect("should find library");
+                }
             },
         );
 
